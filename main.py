@@ -11,31 +11,33 @@ pins.set_events(DigitalPin.P16, PinEventType.EDGE)
 
 def hit(num):
     pins.i2c_write_buffer(0x20,Buffer.from_array([0x12, 1 << num]))
-    basic.pause(80)
+    basic.pause(120)
     pins.i2c_write_buffer(0x20,Buffer.from_array([0x12, 0]))
 
+
 def butt_12():
-    hit(1)
-
-
-def butt_13():
     hit(2)
 
-
-def butt_14():
+def butt_13():
     hit(3)
 
-
-def butt_15():
+def butt_14():
     hit(4)
 
 
-def butt_16():
+def butt_15():
     hit(5)
 
 
+def butt_16():
+    hit(6)
+
+def on_forever():
+    pass
+
+basic.forever(on_forever)
 control.on_event(EventBusSource.MICROBIT_ID_IO_P12,EventBusValue.MICROBIT_PIN_EVT_RISE,butt_12)
-control.on_event(EventBusSource.MICROBIT_ID_IO_P13,EventBusValue.MICROBIT_PIN_EVT_RISE,butt_14)
+control.on_event(EventBusSource.MICROBIT_ID_IO_P13,EventBusValue.MICROBIT_PIN_EVT_RISE,butt_13)
 control.on_event(EventBusSource.MICROBIT_ID_IO_P14,EventBusValue.MICROBIT_PIN_EVT_RISE,butt_14)
 control.on_event(EventBusSource.MICROBIT_ID_IO_P15,EventBusValue.MICROBIT_PIN_EVT_RISE,butt_15)
 control.on_event(EventBusSource.MICROBIT_ID_IO_P16,EventBusValue.MICROBIT_PIN_EVT_RISE,butt_16)
